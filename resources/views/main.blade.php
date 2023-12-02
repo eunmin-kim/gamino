@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite(['resources/css/app.css'])
+    @vite(['resources/css/wait-create.css'])
     <title>Document</title>
 </head>
 <body>
@@ -40,7 +40,7 @@
                 예약 시스템으로 당신의 소중한 시간을 확보하세요
 
             </div>
-            <a href="#" style="display: block;text-decoration: none;color: white" class="">
+            <a href="{{route('wait.create')}}" style="display: block;text-decoration: none;color: white" class="">
                 <button style="background: rgb(2,0,36);background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(245,149,149,1) 0%, rgba(255,124,0,1) 100%);" class="p-4 mt-4 font-black rounded-xl">예약하러 가기</button>
             </a>
         </div>
