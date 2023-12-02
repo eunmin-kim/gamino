@@ -14,5 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('main');
+})->name("main");
+
+Route::get('/join',function() {
+    return view('join');
+})->name('join');
+
+Route::get('/login',function() {
+    return view('login');
+})->name('login');
+
+Route::post('/login',[\App\Http\Controllers\auth\LoginController::class,'login'])->name('post.login');
