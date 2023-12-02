@@ -24,5 +24,6 @@ Route::get('/join',function() {
 Route::get('/login',function() {
     return view('login');
 })->name('login');
-
+Route::get('/logout',[\App\Http\Controllers\auth\LoginController::class,'logout'])->name('logout');
 Route::post('/login',[\App\Http\Controllers\auth\LoginController::class,'login'])->name('post.login');
+Route::post('/join',[\App\Http\Controllers\auth\JoinController::class,'register'])->name('post.join');

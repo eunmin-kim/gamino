@@ -35,9 +35,18 @@
             <div class="title">
                 LOGIN
             </div>
+            @if($errors->any())
+                <div class="bg-red-800 mt-4 text-white p-2 font-bold">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="toolbox1">
                 <div>I D &nbsp;&nbsp;&nbsp;&nbsp;: <input name="id" class="id"></div>
-                <div>password : <input name="pw" class="pw"></div>
+                <div>password : <input type="password" name="pw" class="pw"></div>
             </div>
             <div class="toolbox2">
                 <button type="submit" class="box3">로그인</button>

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     @vite(['resources/css/join.css'])
+    @vite(['resources/css/app.css'])
     <title>join</title>
 </head>
 
@@ -30,19 +31,29 @@
         <div class="caption">※&nbsp;&nbsp;&nbsp;금일 영업시간 : 18:00 ~ 22:00 매장이용에 참고 바랍니다.</div>
 
 
-        <form class="box1">
+        <form method="post" action="{{route('post.join')}}" class="box1 register-form">
+            @csrf
             <div class="title">
                 JOIN
             </div>
+            @if($errors->any())
+                <div class="bg-red-800 mt-4 text-white p-2 font-bold">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="toolbox1">
-                <div>I D &nbsp;&nbsp;&nbsp;&nbsp;: <input class="id"></div>
-                <div>password : <input class="pw"></div>
-                <div>password-check : <input class="pw"></div>
-                <div>name : <input class="pw"></div>
-                <div>phone number : <input class="pw"></div>
+                <div>I D &nbsp;&nbsp;&nbsp;&nbsp;: <input name="id" class="id join-id" required></div>
+                <div>password : <input type="password" name="pw" class="pw join-pw" required></div>
+                <div>password-check : <input type="password" name="pw2" class="pw join-pw2" required></div>
+                <div>name : <input name="name" class="pw" required></div>
+                <div>phone number : <input name="phone_number" class="pw" required></div>
             </div>
             <div class="toolbox2">
-                <button type="submit" class="box3">회원가입</button>
+                <button style="background-color: rgb(190, 62, 62);" type="submit" class="box3">회원가입</button>
                 <button class="box4 back-btn"><a style="text-decoration: none;color: white;" href="/">뒤로가기</a></button>
             </div>
         </form>
