@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @vite(['resources/css/wait-menu.css'])
     <title>waitcreate3</title>
 </head>
@@ -21,7 +22,7 @@
             </div>
             <li class="total">총합계 : 0원</li>
 
-            <li><a class="pay">결제하기</a></li>
+            <li><a href="#" class="pay">결제하기</a></li>
 
         </ul>
     </nav>

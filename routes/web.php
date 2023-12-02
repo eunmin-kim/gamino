@@ -35,3 +35,11 @@ Route::get('/wait',function() {
 Route::get('/menu',function() {
     return view('wait-menu');
 })->name('wait.menu');
+
+Route::get("/wait-order",function() {
+    return view('wait-order');
+})->name('wait.order');
+
+Route::post('/order',[\App\Http\Controllers\OrderController::class,'order'])->name('post.order');
+
+Route::get("/stream",[\App\Http\Controllers\StreamController::class,'stream'])->name("stream");

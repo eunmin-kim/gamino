@@ -21,7 +21,7 @@ class LoginController extends Controller
         ];
         if (Auth::attempt($cred)) {
             $request->session()->regenerate();
-
+//            $request->session()->setName($cred['user_id']);
             return redirect()->route('main');
         }
 

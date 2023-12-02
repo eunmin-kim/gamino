@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('market', function (Blueprint $table) {
             $table->id('market_id');
             $table->string('market_name');
-            $table->string('market_menu');
-            $table->string('market_menu_img');
-            $table->string('market_price');
-            $table->string('market_notice');
-            $table->boolean('is_market_online');
-            $table->string('market_location');
+            $table->string('market_menu')->nullable();
+            $table->string('market_menu_img')->nullable();
+            $table->string('market_price')->nullable();
+            $table->string('market_notice')->nullable();
+            $table->boolean('is_market_online')->default(true);
+            $table->string('market_location')->nullable();
             $table->timestamps();
         });
     }
