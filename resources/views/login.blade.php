@@ -11,7 +11,7 @@
 <div class="all">
     <nav class="leftnavibar">
         <ul>
-            <li class="nav-item li-title1"><img src="image/logo.png" class="mainlogo"></li>
+            <li class="nav-item li-title1"><a href="/"><img src="image/logo.png" class="mainlogo"></a></li>
             <li class="nav-item li-title1-1">The<br>Restaurant<br>reservation system</li>
             <li class="nav-item li-title2"><img src="image/profile.png" class="profile"></li>
             @guest()
