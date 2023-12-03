@@ -9,7 +9,13 @@ eventSource.addEventListener('wait',function(event) {
     var num = data.waiting_number;
     $('.order-count').text(num);
     var startNum = data.start.waiting_id;
-    var currentNum = data.session_number[0].waiting_id;
+    var currentNum = data.session_number[0]?.waiting_id;
+    if (currentNum === undefined)
+    {
+        $('.order-state').text(0);
+        $('.waiting-progress').val(100);
+        return;
+    }
     // console.log(currentNum);
     var lastNum = startNum + num;
     var cNum = currentNum - startNum + 1;
@@ -20,10 +26,6 @@ eventSource.addEventListener('wait',function(event) {
     max = true;
 
     var getVal = tmp / cNum;
-    if (num === 0)
-    {
-        alert("대기가 완료되었습니다.")
-        return;
-    }
+
     $('.waiting-progress').val(getVal);
 })
