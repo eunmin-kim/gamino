@@ -36,5 +36,6 @@ $('.pay').click(async function() {
         credentials:"same-origin",
         body: JSON.stringify(postData),
     })
-   window.location.href = '/wait-order';
+    console.log(result);
+   // window.location.href = '/wait-order';
 })

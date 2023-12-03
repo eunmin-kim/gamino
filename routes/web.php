@@ -31,15 +31,15 @@ Route::post('/join',[\App\Http\Controllers\auth\JoinController::class,'register'
 
 Route::get('/wait',function() {
     return view('wait-create');
-})->name('wait.create');
+})->name('wait.create')->middleware('auth');
 Route::get('/menu',function() {
     return view('wait-menu');
-})->name('wait.menu');
+})->name('wait.menu')->middleware('auth');
 
 Route::get("/wait-order",function() {
     return view('wait-order');
-})->name('wait.order');
+})->name('wait.order')->middleware('auth');
 
 Route::post('/order',[\App\Http\Controllers\OrderController::class,'order'])->name('post.order');
 
-Route::get("/stream",[\App\Http\Controllers\StreamController::class,'stream'])->name("stream");
+Route::get("/stream",[\App\Http\Controllers\StreamController::class,'stream'])->name("stream")->middleware('auth');

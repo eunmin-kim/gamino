@@ -11,6 +11,6 @@ class OrderWaiting extends Model
     protected $table = "order_waiting";
     protected $primaryKey = 'waiting_id';
     protected $fillable = [
-        'order_menu','order_menu_price','delivery_or_inhouse','order_notice','is_order_finish'
+        'order_menu','order_menu_price','delivery_or_inhouse','order_notice','is_order_finish','id','markets_id'
     ];
 }

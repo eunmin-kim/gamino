@@ -29,6 +29,7 @@ class JoinController extends Controller
         $user->password = $pw;
         $user->name = $name;
         $user->phone_number = $phoneNumber;
+        $user->email = 'no email';
         $user->save();
 
         return response()->redirectToRoute("login");
