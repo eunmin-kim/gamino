@@ -15,16 +15,19 @@
             <li class="nav-item li-title1"><a href="/"><img src="image/logo.png" class="mainlogo"></a></li>
             <li class="nav-item li-title1-1">The<br>Restaurant<br>reservation system</li>
             <li class="nav-item li-title2"><img src="image/profile.png" class="profile"></li>
-            @guest()
-                <li class="nav-item li-title3">로그인 해주세요</li>
-                <li><a href="{{route('login')}}" class="current">로그인</a></li>
-                <li><a href="{{route('join')}}">회원가입</a></li>
-            @endguest
-            @auth()
+            @auth('market')
+
+                <li style="color: white;text-align: center;"><a href="{{route('crm.logout')}}">로그아웃</a></li>
+                <li style="color: white;text-align: center;"><a href="{{route('crm.info')}}">관리자 페이지</a></li>
+            @elseauth('web')
                 <li style="color: white;text-align: center;">반갑습니다.</li>
                 <li style="color: white;text-align: center;"><a href="{{route('logout')}}">로그아웃</a></li>
+            @else
+                <li class="nav-item li-title3">로그인 해주세요</li>
+                <li><a href="{{route('login')}}" class="current">로그인</a></li>
+                <li><a href="{{route('crm.login')}}">관리자 로그인</a></li>
+                <li><a href="{{route('join')}}">회원가입</a></li>
             @endauth
-            <li><a>장바구니 / 0</a></li>
         </ul>
     </nav>
 
@@ -40,11 +43,23 @@
                 예약 시스템으로 당신의 소중한 시간을 확보하세요
 
             </div>
-            <a href="{{route('wait.create')}}" style="display: block;text-decoration: none;color: white" class="">
-                <button style="background: rgb(2,0,36);background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(245,149,149,1) 0%, rgba(255,124,0,1) 100%);" class="p-4 mt-4 font-black rounded-xl">예약하러 가기</button>
-            </a>
+           @auth('market')
+
+            @else
+                <a href="{{route('wait.create')}}" style="display: block;text-decoration: none;color: white" class="">
+                    <button style="background: rgb(2,0,36);background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(245,149,149,1) 0%, rgba(255,124,0,1) 100%);" class="p-4 mt-4 font-black rounded-xl">예약하러 가기</button>
+                </a>
+            @endauth
         </div>
     </div>
 </div>
+@auth()
+    @if(session('order') === true)
+        <div class="bg-white p-4 rounded text-center" style="position: absolute; top: 20px; right: 20px;">
+            <p class="font-black" style="display: block">현재 대기 접수된 주문이 있어요!</p>
+            <a href="/wait-order" style="text-decoration: underline;display: block" class="mt-2">바로가기</a>
+        </div>
+    @endif
+@endauth
 </body>
 </html>

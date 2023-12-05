@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'market'=>[
+            'driver'=> 'session',
+            'provider' => 'markets'
+        ]
     ],
 
     /*
@@ -64,6 +68,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+        'markets' => [
+            'driver' => 'eloquent',
+            'model' => \App\Models\Market::class,
+        ]
 
         // 'users' => [
         //     'driver' => 'database',

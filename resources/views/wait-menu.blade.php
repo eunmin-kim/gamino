@@ -36,6 +36,7 @@
                 </div>
                 <div class="babo">
                     <div class="toolbox1">
+{{--                        TODO: 메뉴 SQL문으로 불러오기 item + value --}}
                         <div><img src="image/taco.jpg" class="photo"></div>
                         <div class="menu">
                             <div class="name item1">타코야끼 8알 | 4.5</div>

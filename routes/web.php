@@ -32,14 +32,33 @@ Route::post('/join',[\App\Http\Controllers\auth\JoinController::class,'register'
 Route::get('/wait',function() {
     return view('wait-create');
 })->name('wait.create')->middleware('auth');
-Route::get('/menu',function() {
-    return view('wait-menu');
-})->name('wait.menu')->middleware('auth');
+Route::get('/menu',[\App\Http\Controllers\crm\OrderController::class,'getMenu'])->name('wait.menu')->middleware('auth');
 
 Route::get("/wait-order",function() {
     return view('wait-order');
 })->name('wait.order')->middleware('auth');
 
+Route::get('/pay',function() {
+    return view('pay');
+})->name('wait.pay')->middleware('auth');
+
 Route::post('/order',[\App\Http\Controllers\OrderController::class,'order'])->name('post.order');
 
 Route::get("/stream",[\App\Http\Controllers\StreamController::class,'stream'])->name("stream")->middleware('auth');
+
+Route::prefix('crm')->group(function() {
+    Route::get('login',function() {
+        return view('crm.login');
+    })->name('crm.login');
+    Route::get('market-info',[\App\Http\Controllers\crm\ChangeInfoController::class,'marketInfo'])->name('crm.info');
+    Route::get('market-wait',[\App\Http\Controllers\crm\OrderController::class,'marketWait'])->name('crm.wait');
+    Route::get('logout',[\App\Http\Controllers\crm\LoginController::class,'logout'])->name('crm.logout');
+//    POST
+    Route::post('register',[\App\Http\Controllers\crm\JoinController::class,'register'])->name("post.crm.register");
+    Route::post('login',[\App\Http\Controllers\crm\LoginController::class,'login'])->name('post.crm.login');
+    Route::post('notice',[\App\Http\Controllers\crm\ChangeInfoController::class,'changeNotice']);
+    Route::post('name',[\App\Http\Controllers\crm\ChangeInfoController::class,'changeMarketName']);
+    Route::post('loc',[\App\Http\Controllers\crm\ChangeInfoController::class,'changeLocation']);
+
+    Route::post('order',[\App\Http\Controllers\crm\OrderController::class,'waitingFinish']);
+});

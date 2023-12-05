@@ -11,31 +11,30 @@ $('.choose').click(function(e) {
     var item = selectedMenu.split('|');
     var price = item[1].trim();
     totalPrice += price  * 1000;
-    orderMenu += item[0].trim()+" ";
+    orderMenu += item[0].trim()+",";
     console.log(orderMenu)
     $('.total').text(`총합계 : ${totalPrice}원`)
     $('.menu-bar-item').append('<li class="menu-item"><a>&nbsp;<img src="image/minus.png" class="minus">&nbsp;'+selectedMenu+'</a></li>')
 })
 
 $('.pay').click(async function() {
+    // 메뉴 유효성 검사
+    if (orderMenu === "")
+    {
+        alert("입력하신 메뉴가 없습니다.");
+        return;
+    }
+    //  주문시 요청사항
+    let orderNotice = prompt("주문시 요청 사항을 입력해주세요.");
     var where = localStorage.getItem('where');
     var postData = {
-        'where': where,
-        'totalPrice':totalPrice,
-        'orderMenu':orderMenu
+        order: {
+            'where': where,
+            'totalPrice':totalPrice,
+            'orderMenu':orderMenu,
+            'orderNotice': orderNotice
+        }
     }
-
-
-    const result = await fetch('/order',{
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-            "Accept": "application/json",
-        },
-        method: 'POST',
-        mode: 'cors',
-        credentials:"same-origin",
-        body: JSON.stringify(postData),
-    })
-    // console.log(result);
-   window.location.href = '/wait-order';
+    localStorage.setItem("orderData",JSON.stringify(postData));
+    window.location.href = "/pay";
 })
